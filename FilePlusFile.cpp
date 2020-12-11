@@ -49,7 +49,14 @@ int main()
         printf("Could not open Three.txt.");
         return 0;
     }
-    
+    while (ReadFile(hFile, buff, sizeof(buff), &dwBytesRead, NULL)
+        && dwBytesRead > 0)
+    {
+        dwPos = SetFilePointer(hAppend, 0, NULL, FILE_END);
+        LockFile(hAppend, dwPos, 0, dwBytesRead, 0);
+        WriteFile(hAppend, buff, dwBytesRead, &dwBytesWritten, NULL);
+        UnlockFile(hAppend, dwPos, 0, dwBytesRead, 0);
+    }
 }
 
 
