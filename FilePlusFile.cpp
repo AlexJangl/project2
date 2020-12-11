@@ -65,6 +65,9 @@ int main()
         WriteFile(hAppend, buff, dwBytesRead, &dwBytesWritten, NULL);
         UnlockFile(hAppend, dwPos, 0, dwBytesRead, 0);
     }
+    CloseHandle(hFile);
+    CloseHandle(hFileTwo);
+    CloseHandle(hAppend);
 }
 
 
